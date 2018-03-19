@@ -28,13 +28,30 @@ initial begin
 	In2 = 16'h9797;
 
 	repeat(2) @(posedge clk);
-	if(Out != 16'hFFC0) begin
+	if(Out != 16'h0000) begin
 		$display("Test 2 Failed.");
+		$display(Out);
 		$stop;
 	end
 	else begin
 		$display("Test 2 Passed.");
 	end
+
+	repeat(2) @(posedge clk);
+
+	In1 = 16'h0009;
+	In2 = 16'h0006;
+
+	repeat(2) @(posedge clk);
+	if(Out != 16'h000F) begin
+		$display("Test 4 Failed.");
+		$display(Out);
+		$stop;
+	end
+	else begin
+		$display("Test 4 Passed.");
+	end
+
 	$display("All Tests Passed.");
 	$stop;
 
